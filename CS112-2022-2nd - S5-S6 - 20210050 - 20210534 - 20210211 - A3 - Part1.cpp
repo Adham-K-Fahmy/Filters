@@ -180,6 +180,146 @@ void detectEdges(){
 
 }
 void enlarge(){
+    unsigned char firstQuarter[127][127];
+    unsigned char secondQuarter[127][127];
+    unsigned char thirdQuarter[127][127];
+    unsigned char fourthQuarter[127][127];
+    int userChoice;
+    cout << "Which quarter to enlarge 1, 2, 3 or 4?";
+    cin >> userChoice;
+
+    if (userChoice == 1)
+    {
+        for (int i = 0; i < 127; i++)
+        {
+            for (int j = 0; j < 127; j++)
+            {
+                firstQuarter[i][j] = image[i][j];
+            }
+        }
+        for (int i = 0 ; i < 127 ; i++)
+        {
+            for (int j = 0 ; j < 127 ; j++)
+            {
+                image[2*i][2*j] = firstQuarter[i][j];
+            }
+        }
+        for (int i = 0 ; i < 256 ; i++)
+        {
+            for (int j = 1 ; j < 256 ; j+=2)
+            {
+                image[i][j] = image[i][j-1];
+            }
+        }
+        for (int i = 1 ; i < 256 ; i+=2)
+        {
+            for (int j = 0 ; j < 256 ; j++)
+            {
+                image[i][j] = image[i-1][j];
+            }
+        }
+
+    }
+
+
+    if (userChoice == 2)
+    {
+        for (int i = 0; i < 127; i++)
+        {
+            for (int j = 127; j < 256; j++)
+            {
+                secondQuarter[i][j-127] = image[i][j];
+            }
+        }
+        for (int i = 0 ; i < 127 ; i++)
+        {
+            for (int j = 0 ; j < 127 ; j++)
+            {
+                image[2*i][2*j] = secondQuarter[i][j];
+            }
+        }
+        for (int i = 0 ; i < 256 ; i++)
+        {
+            for (int j = 1 ; j < 256 ; j+=2)
+            {
+                image[i][j] = image[i][j-1];
+            }
+        }
+        for (int i = 1 ; i < 256 ; i+=2)
+        {
+            for (int j = 0 ; j < 256 ; j++)
+            {
+                image[i][j] = image[i-1][j];
+            }
+        }
+
+    }
+
+    if (userChoice == 3)
+    {
+        for (int i = 127; i < 256; i++)
+        {
+            for (int j = 0; j < 127; j++)
+            {
+                thirdQuarter[i-127][j] = image[i][j];
+            }
+        }
+        for (int i = 0 ; i < 127 ; i++)
+        {
+            for (int j = 0 ; j < 127 ; j++)
+            {
+                image[2*i][2*j] = thirdQuarter[i][j];
+            }
+        }
+        for (int i = 0 ; i < 256 ; i++)
+        {
+            for (int j = 1 ; j < 256 ; j+=2)
+            {
+                image[i][j] = image[i][j-1];
+            }
+        }
+        for (int i = 1 ; i < 256 ; i+=2)
+        {
+            for (int j = 0 ; j < 256 ; j++)
+            {
+                image[i][j] = image[i-1][j];
+            }
+        }
+
+    }
+
+    if (userChoice == 4)
+    {
+        for (int i = 127; i < 256; i++)
+        {
+            for (int j = 127; j < 256; j++)
+            {
+                fourthQuarter[i-127][j-127] = image[i][j];
+            }
+        }
+        for (int i = 0 ; i < 127 ; i++)
+        {
+            for (int j = 0 ; j < 127 ; j++)
+            {
+                image[2*i][2*j] = fourthQuarter[i][j];
+            }
+        }
+        for (int i = 0 ; i < 256 ; i++)
+        {
+            for (int j = 1 ; j < 256 ; j+=2)
+            {
+                image[i][j] = image[i][j-1];
+            }
+        }
+        for (int i = 1 ; i < 256 ; i+=2)
+        {
+            for (int j = 0 ; j < 256 ; j++)
+            {
+                image[i][j] = image[i-1][j];
+            }
+        }
+
+    }
 
 }
 void shrink(){
