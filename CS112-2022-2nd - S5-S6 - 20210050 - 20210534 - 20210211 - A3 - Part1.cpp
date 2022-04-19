@@ -110,6 +110,24 @@ void blackWhite(){
 
 }
 void invert(){
+    for (int i = 0; i < 256; i++)
+	{
+		for (int j = 0; j < 256; j++)
+		{
+			if (image[i][j] == 0)
+			{
+				image[i][j] = 255;
+			}
+			else if (image[i][j] == 255)
+			{
+				image[i][j] = 0;
+			}
+			else
+			{
+				image[i][j] = 255 - image[i][j];
+			}
+		}
+	}
 
 }
 void _merge(){
