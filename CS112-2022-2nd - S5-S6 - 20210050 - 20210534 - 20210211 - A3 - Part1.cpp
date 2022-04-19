@@ -60,7 +60,25 @@ int main()
             flip();
         }
         else if(userChoice == "5"){
-            _rotate();
+            int choice;
+            cout << "plaese enter your choice 90 or 180 or 270 : \n";
+            cin >> choice;
+            if (choice == 90)
+            {
+	        _rotate();
+            }
+
+	        if (choice == 180)
+            {
+	            _rotate();
+	            _rotate();
+            }
+            if (choice == 270)
+            {
+	            _rotate();
+	            _rotate();
+	            _rotate();
+            }
         }
         else if(userChoice == "6"){
             darkenLighten();
@@ -137,6 +155,22 @@ void flip(){
 
 }
 void _rotate(){
+    unsigned char newImage[256][256];
+    for (int i = 0; i < 256; i++)
+	{
+		for (int j = 0; j < 256; j++)
+		{
+		    newImage[i][j] = image[255-j][i];
+		}
+	}
+	for (int i = 0; i < 256; i++)
+	{
+		for (int j = 0; j < 256; j++)
+		{
+		    image[i][j] = newImage[i][j];
+		}
+	}
+
 
 }
 void darkenLighten(){
