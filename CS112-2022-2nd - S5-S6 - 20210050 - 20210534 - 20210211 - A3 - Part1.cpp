@@ -329,6 +329,241 @@ void mirror(){
 
 }
 void shuffle(){
+    unsigned char firstQuarter[127][127];
+    unsigned char secondQuarter[127][127];
+    unsigned char thirdQuarter[127][127];
+    unsigned char fourthQuarter[127][127];
+    int qrt1 , qrt2 , qrt3 , qrt4;
+    cout << "New order of quarters ?";
+    cin >> qrt1 >> qrt2 >> qrt3 >> qrt4;
+
+
+
+    for (int i = 0; i < 127; i++)
+    {
+        for (int j = 0; j < 127; j++)
+        {
+            firstQuarter[i][j] = image[i][j];
+        }
+    }
+
+    for (int i = 0; i < 127; i++)
+    {
+        for (int j = 127; j < 256; j++)
+        {
+            secondQuarter[i][j-127] = image[i][j];
+        }
+    }
+
+    for (int i = 127; i < 256; i++)
+    {
+        for (int j = 0; j < 127; j++)
+        {
+            thirdQuarter[i-127][j] = image[i][j];
+        }
+    }
+
+    for (int i = 127; i < 256; i++)
+    {
+        for (int j = 127; j < 256; j++)
+        {
+            fourthQuarter[i-127][j-127] = image[i][j];
+        }
+    }
+
+
+    if (qrt1 == 1)
+    {
+        for (int i = 0 ; i < 127 ; i++)
+        {
+            for (int j = 0 ; j < 127 ; j++)
+            {
+                image[i][j] = firstQuarter[i][j];
+            }
+        }
+    }
+
+    else if (qrt1 == 2)
+    {
+        for (int i = 0 ; i < 127 ; i++)
+        {
+            for (int j = 0 ; j < 127 ; j++)
+            {
+                image[i][j] = secondQuarter[i][j];
+            }
+        }
+    }
+
+    else if (qrt1 == 3)
+    {
+        for (int i = 0 ; i < 127 ; i++)
+        {
+            for (int j = 0 ; j < 127 ; j++)
+            {
+                image[i][j] = thirdQuarter[i][j];
+            }
+        }
+    }
+
+    else if (qrt1 == 4)
+    {
+        for (int i = 0 ; i < 127 ; i++)
+        {
+            for (int j = 0 ; j < 127 ; j++)
+            {
+                image[i][j] = fourthQuarter[i][j];
+            }
+        }
+    }
+    else
+    {
+        cout << "Not valid input";
+    }
+
+
+    if (qrt2 == 1)
+    {
+        for (int i = 0 ; i < 127 ; i++)
+        {
+            for (int j = 127 ; j < 256 ; j++)
+            {
+                image[i][j] = firstQuarter[i][j-127];
+            }
+        }
+    }
+
+    else if (qrt2 == 2)
+    {
+        for (int i = 0 ; i < 127 ; i++)
+        {
+            for (int j = 127 ; j < 256 ; j++)
+            {
+                image[i][j] = secondQuarter[i][j-127];
+            }
+        }
+    }
+
+    else if (qrt2 == 3)
+    {
+        for (int i = 0 ; i < 127 ; i++)
+        {
+            for (int j = 127 ; j < 256 ; j++)
+            {
+                image[i][j] = thirdQuarter[i][j-127];
+            }
+        }
+    }
+
+    else if (qrt2 == 4)
+    {
+        for (int i = 0 ; i < 127 ; i++)
+        {
+            for (int j = 127 ; j < 256 ; j++)
+            {
+                image[i][j] = fourthQuarter[i][j-127];
+            }
+        }
+    }
+    else
+    {
+        cout << "Not valid input";
+    }
+
+    if (qrt3 == 1)
+    {
+        for (int i = 127 ; i < 256 ; i++)
+        {
+            for (int j = 0 ; j < 127 ; j++)
+            {
+                image[i][j] = firstQuarter[i-127][j];
+            }
+        }
+    }
+
+    else if (qrt3 == 2)
+    {
+        for (int i = 127 ; i < 256 ; i++)
+        {
+            for (int j = 0 ; j < 127 ; j++)
+            {
+                image[i][j] = secondQuarter[i-127][j];
+            }
+        }
+    }
+
+    else if (qrt3 == 3)
+    {
+        for (int i = 127 ; i < 256 ; i++)
+        {
+            for (int j = 0 ; j < 127 ; j++)
+            {
+                image[i][j] = thirdQuarter[i-127][j];
+            }
+        }
+    }
+
+    else if (qrt3 == 4)
+    {
+        for (int i = 127 ; i < 256 ; i++)
+        {
+            for (int j = 0 ; j < 127 ; j++)
+            {
+                image[i][j] = fourthQuarter[i-127][j];
+            }
+        }
+    }
+    else
+    {
+        cout << "not valid input";
+    }
+
+    if (qrt4 == 1)
+    {
+        for (int i = 127 ; i < 256 ; i++)
+        {
+            for (int j = 127 ; j < 256 ; j++)
+            {
+                image[i][j] = firstQuarter[i-127][j-127];
+            }
+        }
+    }
+
+    else if (qrt4 == 2)
+    {
+        for (int i = 127 ; i < 256 ; i++)
+        {
+            for (int j = 127 ; j < 256 ; j++)
+            {
+                image[i][j] = secondQuarter[i-127][j-127];
+            }
+        }
+    }
+
+    else if (qrt4 == 3)
+    {
+        for (int i = 127 ; i < 256 ; i++)
+        {
+            for (int j = 127 ; j < 256 ; j++)
+            {
+                image[i][j] = thirdQuarter[i-127][j-127];
+            }
+        }
+    }
+
+    else if (qrt4 == 4)
+    {
+        for (int i = 127 ; i < 256 ; i++)
+        {
+            for (int j = 127 ; j < 256 ; j++)
+            {
+                image[i][j] = fourthQuarter[i-127][j-127];
+            }
+        }
+    }
+    else
+    {
+        cout << "Not valid input";
+    }
 
 }
 void blur(){
