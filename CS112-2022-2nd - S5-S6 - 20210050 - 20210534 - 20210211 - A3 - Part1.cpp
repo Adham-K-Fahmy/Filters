@@ -65,7 +65,7 @@ int main()
             cin >> choice;
             if (choice == 90)
             {
-	        _rotate();
+                _rotate();
             }
 
 	        if (choice == 180)
@@ -125,7 +125,23 @@ void savePicture()
 	writeGSBMP(imageName, image);
 }
 void blackWhite(){
-
+    long long average = 0;
+    for(int x = 0; x<SIZE; x++){
+        for(int y = 0; y<SIZE; y++){
+            average += image[x][y];
+        }
+    }
+    average /= (SIZE*SIZE);
+    for(int x = 0; x<SIZE; x++){
+        for(int y = 0; y<SIZE; y++){
+            if(image[x][y] > average){
+                image[x][y] = 255;
+            }
+            else{
+                image[x][y] = 0;
+            }
+        }
+    }
 }
 void invert(){
     for (int i = 0; i < 256; i++)
@@ -152,7 +168,29 @@ void _merge(){
 
 }
 void flip(){
-
+    cout << "please choose how to flip the image\n1- horizontally\n2- vertically\n";
+    int choose;
+    cin >> choose;
+    if(choose == 1){
+        int temp=0;
+        for(int x = 0; x<SIZE; x++){
+            for(int y = 0; y<SIZE/2; y++){
+                temp = image[x][y];
+                image[x][y] = image[x][255-y];
+                image[x][255-y] = temp;
+            }
+        }
+    }
+    else{
+        int temp=0;
+        for(int x = 0; x<SIZE/2; x++){
+            for(int y = 0; y<SIZE; y++){
+                temp = image[x][y];
+                image[x][y] = image[255-x][y];
+                image[255-x][y] = temp;
+            }
+        }
+    }
 }
 void _rotate(){
     unsigned char newImage[256][256];
@@ -177,7 +215,16 @@ void darkenLighten(){
 
 }
 void detectEdges(){
-
+    for(int x = 0; x < SIZE; x++){
+        for(int y = 0; y < SIZE; y++){
+            if(abs(image[x][y]-image[x][y+1]) > 35 || abs(image[x][y]-image[x+1][y]) > 35){
+                image[x][y] = 0;
+            }
+            else{
+                image[x][y] = 255;
+            }
+        }
+    }
 }
 void enlarge(){
     unsigned char firstQuarter[127][127];
@@ -326,7 +373,50 @@ void shrink(){
 
 }
 void mirror(){
-
+    int startRowPixel;
+    int endRowPixel;
+    int startColumnPixel;
+    int endColumnPixel;
+    int a;
+    cout << "1- right \n2- left \n3- down \n4- up" << endl;
+    cin >> a;
+    if(a == 1){
+        startRowPixel = 0;
+        endRowPixel = SIZE;
+        startColumnPixel = 0;
+        endColumnPixel = 127;
+    }
+    else if(a == 2){
+        startRowPixel = 0;
+        endRowPixel = SIZE;
+        startColumnPixel = 127;
+        endColumnPixel = SIZE;
+    }
+    else if(a == 3){
+        startRowPixel = 0;
+        endRowPixel = 127;
+        startColumnPixel = 0;
+        endColumnPixel = SIZE;
+    }
+    else if(a == 4){
+        startRowPixel = 127;
+        endRowPixel = SIZE;
+        startColumnPixel = 0;
+        endColumnPixel = SIZE;
+    }
+    else{
+        return mirror();
+    }
+    for(int x = startRowPixel; x<endRowPixel; x++){
+        for(int y = startColumnPixel; y<endColumnPixel; y++){
+            if(startRowPixel == 0 && endRowPixel == SIZE){
+                image[x][y] = image[x][255-y];
+            }
+            else{
+                image[x][y] = image[255-x][y];
+            }
+        }
+    }
 }
 void shuffle(){
     unsigned char firstQuarter[127][127];
