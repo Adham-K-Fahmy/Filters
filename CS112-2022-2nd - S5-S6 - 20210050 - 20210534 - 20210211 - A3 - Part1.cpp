@@ -180,26 +180,26 @@ void detectEdges(){
 
 }
 void enlarge(){
-    unsigned char firstQuarter[127][127];
-    unsigned char secondQuarter[127][127];
-    unsigned char thirdQuarter[127][127];
-    unsigned char fourthQuarter[127][127];
+    unsigned char firstQuarter[128][128];
+    unsigned char secondQuarter[128][128];
+    unsigned char thirdQuarter[128][128];
+    unsigned char fourthQuarter[128][128];
     int userChoice;
     cout << "Which quarter to enlarge 1, 2, 3 or 4?";
     cin >> userChoice;
 
     if (userChoice == 1)
     {
-        for (int i = 0; i < 127; i++)
+        for (int i = 0; i < 128; i++)
         {
-            for (int j = 0; j < 127; j++)
+            for (int j = 0; j < 128; j++)
             {
                 firstQuarter[i][j] = image[i][j];
             }
         }
-        for (int i = 0 ; i < 127 ; i++)
+        for (int i = 0 ; i < 128 ; i++)
         {
-            for (int j = 0 ; j < 127 ; j++)
+            for (int j = 0 ; j < 128 ; j++)
             {
                 image[2*i][2*j] = firstQuarter[i][j];
             }
@@ -224,16 +224,16 @@ void enlarge(){
 
     if (userChoice == 2)
     {
-        for (int i = 0; i < 127; i++)
+        for (int i = 0; i < 128; i++)
         {
-            for (int j = 127; j < 256; j++)
+            for (int j = 128; j < 256; j++)
             {
-                secondQuarter[i][j-127] = image[i][j];
+                secondQuarter[i][j-128] = image[i][j];
             }
         }
-        for (int i = 0 ; i < 127 ; i++)
+        for (int i = 0 ; i < 128 ; i++)
         {
-            for (int j = 0 ; j < 127 ; j++)
+            for (int j = 0 ; j < 128 ; j++)
             {
                 image[2*i][2*j] = secondQuarter[i][j];
             }
@@ -257,16 +257,16 @@ void enlarge(){
 
     if (userChoice == 3)
     {
-        for (int i = 127; i < 256; i++)
+        for (int i = 128; i < 256; i++)
         {
             for (int j = 0; j < 127; j++)
             {
-                thirdQuarter[i-127][j] = image[i][j];
+                thirdQuarter[i-128][j] = image[i][j];
             }
         }
-        for (int i = 0 ; i < 127 ; i++)
+        for (int i = 0 ; i < 128 ; i++)
         {
-            for (int j = 0 ; j < 127 ; j++)
+            for (int j = 0 ; j < 128 ; j++)
             {
                 image[2*i][2*j] = thirdQuarter[i][j];
             }
@@ -290,16 +290,16 @@ void enlarge(){
 
     if (userChoice == 4)
     {
-        for (int i = 127; i < 256; i++)
+        for (int i = 128; i < 256; i++)
         {
-            for (int j = 127; j < 256; j++)
+            for (int j = 128; j < 256; j++)
             {
-                fourthQuarter[i-127][j-127] = image[i][j];
+                fourthQuarter[i-128][j-128] = image[i][j];
             }
         }
-        for (int i = 0 ; i < 127 ; i++)
+        for (int i = 0 ; i < 128 ; i++)
         {
-            for (int j = 0 ; j < 127 ; j++)
+            for (int j = 0 ; j < 128 ; j++)
             {
                 image[2*i][2*j] = fourthQuarter[i][j];
             }
@@ -329,54 +329,54 @@ void mirror(){
 
 }
 void shuffle(){
-    unsigned char firstQuarter[127][127];
-    unsigned char secondQuarter[127][127];
-    unsigned char thirdQuarter[127][127];
-    unsigned char fourthQuarter[127][127];
+    unsigned char firstQuarter[128][128];
+    unsigned char secondQuarter[128][128];
+    unsigned char thirdQuarter[128][128];
+    unsigned char fourthQuarter[128][128];
     int qrt1 , qrt2 , qrt3 , qrt4;
     cout << "New order of quarters ?";
     cin >> qrt1 >> qrt2 >> qrt3 >> qrt4;
 
 
 
-    for (int i = 0; i < 127; i++)
+    for (int i = 0; i < 128; i++)
     {
-        for (int j = 0; j < 127; j++)
+        for (int j = 0; j < 128; j++)
         {
             firstQuarter[i][j] = image[i][j];
         }
     }
 
-    for (int i = 0; i < 127; i++)
+    for (int i = 0; i < 128; i++)
     {
-        for (int j = 127; j < 256; j++)
+        for (int j = 128; j < 256; j++)
         {
-            secondQuarter[i][j-127] = image[i][j];
+            secondQuarter[i][j-128] = image[i][j];
         }
     }
 
-    for (int i = 127; i < 256; i++)
+    for (int i = 128; i < 256; i++)
     {
-        for (int j = 0; j < 127; j++)
+        for (int j = 0; j < 128; j++)
         {
-            thirdQuarter[i-127][j] = image[i][j];
+            thirdQuarter[i-128][j] = image[i][j];
         }
     }
 
-    for (int i = 127; i < 256; i++)
+    for (int i = 128; i < 256; i++)
     {
-        for (int j = 127; j < 256; j++)
+        for (int j = 128; j < 256; j++)
         {
-            fourthQuarter[i-127][j-127] = image[i][j];
+            fourthQuarter[i-128][j-128] = image[i][j];
         }
     }
 
 
     if (qrt1 == 1)
     {
-        for (int i = 0 ; i < 127 ; i++)
+        for (int i = 0 ; i < 128 ; i++)
         {
-            for (int j = 0 ; j < 127 ; j++)
+            for (int j = 0 ; j < 128 ; j++)
             {
                 image[i][j] = firstQuarter[i][j];
             }
@@ -385,9 +385,9 @@ void shuffle(){
 
     else if (qrt1 == 2)
     {
-        for (int i = 0 ; i < 127 ; i++)
+        for (int i = 0 ; i < 128 ; i++)
         {
-            for (int j = 0 ; j < 127 ; j++)
+            for (int j = 0 ; j < 128 ; j++)
             {
                 image[i][j] = secondQuarter[i][j];
             }
@@ -396,9 +396,9 @@ void shuffle(){
 
     else if (qrt1 == 3)
     {
-        for (int i = 0 ; i < 127 ; i++)
+        for (int i = 0 ; i < 128 ; i++)
         {
-            for (int j = 0 ; j < 127 ; j++)
+            for (int j = 0 ; j < 128 ; j++)
             {
                 image[i][j] = thirdQuarter[i][j];
             }
@@ -407,9 +407,9 @@ void shuffle(){
 
     else if (qrt1 == 4)
     {
-        for (int i = 0 ; i < 127 ; i++)
+        for (int i = 0 ; i < 128 ; i++)
         {
-            for (int j = 0 ; j < 127 ; j++)
+            for (int j = 0 ; j < 128 ; j++)
             {
                 image[i][j] = fourthQuarter[i][j];
             }
@@ -423,44 +423,44 @@ void shuffle(){
 
     if (qrt2 == 1)
     {
-        for (int i = 0 ; i < 127 ; i++)
+        for (int i = 0 ; i < 128 ; i++)
         {
-            for (int j = 127 ; j < 256 ; j++)
+            for (int j = 128 ; j < 256 ; j++)
             {
-                image[i][j] = firstQuarter[i][j-127];
+                image[i][j] = firstQuarter[i][j-128];
             }
         }
     }
 
     else if (qrt2 == 2)
     {
-        for (int i = 0 ; i < 127 ; i++)
+        for (int i = 0 ; i < 128 ; i++)
         {
-            for (int j = 127 ; j < 256 ; j++)
+            for (int j = 128 ; j < 256 ; j++)
             {
-                image[i][j] = secondQuarter[i][j-127];
+                image[i][j] = secondQuarter[i][j-128];
             }
         }
     }
 
     else if (qrt2 == 3)
     {
-        for (int i = 0 ; i < 127 ; i++)
+        for (int i = 0 ; i < 128 ; i++)
         {
-            for (int j = 127 ; j < 256 ; j++)
+            for (int j = 128 ; j < 256 ; j++)
             {
-                image[i][j] = thirdQuarter[i][j-127];
+                image[i][j] = thirdQuarter[i][j-128];
             }
         }
     }
 
     else if (qrt2 == 4)
     {
-        for (int i = 0 ; i < 127 ; i++)
+        for (int i = 0 ; i < 128 ; i++)
         {
-            for (int j = 127 ; j < 256 ; j++)
+            for (int j = 128 ; j < 256 ; j++)
             {
-                image[i][j] = fourthQuarter[i][j-127];
+                image[i][j] = fourthQuarter[i][j-128];
             }
         }
     }
@@ -471,44 +471,44 @@ void shuffle(){
 
     if (qrt3 == 1)
     {
-        for (int i = 127 ; i < 256 ; i++)
+        for (int i = 128 ; i < 256 ; i++)
         {
-            for (int j = 0 ; j < 127 ; j++)
+            for (int j = 0 ; j < 128 ; j++)
             {
-                image[i][j] = firstQuarter[i-127][j];
+                image[i][j] = firstQuarter[i-128][j];
             }
         }
     }
 
     else if (qrt3 == 2)
     {
-        for (int i = 127 ; i < 256 ; i++)
+        for (int i = 128 ; i < 256 ; i++)
         {
-            for (int j = 0 ; j < 127 ; j++)
+            for (int j = 0 ; j < 128 ; j++)
             {
-                image[i][j] = secondQuarter[i-127][j];
+                image[i][j] = secondQuarter[i-128][j];
             }
         }
     }
 
     else if (qrt3 == 3)
     {
-        for (int i = 127 ; i < 256 ; i++)
+        for (int i = 128 ; i < 256 ; i++)
         {
-            for (int j = 0 ; j < 127 ; j++)
+            for (int j = 0 ; j < 128 ; j++)
             {
-                image[i][j] = thirdQuarter[i-127][j];
+                image[i][j] = thirdQuarter[i-128][j];
             }
         }
     }
 
     else if (qrt3 == 4)
     {
-        for (int i = 127 ; i < 256 ; i++)
+        for (int i = 128 ; i < 256 ; i++)
         {
-            for (int j = 0 ; j < 127 ; j++)
+            for (int j = 0 ; j < 128 ; j++)
             {
-                image[i][j] = fourthQuarter[i-127][j];
+                image[i][j] = fourthQuarter[i-128][j];
             }
         }
     }
@@ -519,44 +519,44 @@ void shuffle(){
 
     if (qrt4 == 1)
     {
-        for (int i = 127 ; i < 256 ; i++)
+        for (int i = 128 ; i < 256 ; i++)
         {
-            for (int j = 127 ; j < 256 ; j++)
+            for (int j = 128 ; j < 256 ; j++)
             {
-                image[i][j] = firstQuarter[i-127][j-127];
+                image[i][j] = firstQuarter[i-128][j-128];
             }
         }
     }
 
     else if (qrt4 == 2)
     {
-        for (int i = 127 ; i < 256 ; i++)
+        for (int i = 128 ; i < 256 ; i++)
         {
-            for (int j = 127 ; j < 256 ; j++)
+            for (int j = 128 ; j < 256 ; j++)
             {
-                image[i][j] = secondQuarter[i-127][j-127];
+                image[i][j] = secondQuarter[i-128][j-128];
             }
         }
     }
 
     else if (qrt4 == 3)
     {
-        for (int i = 127 ; i < 256 ; i++)
+        for (int i = 128 ; i < 256 ; i++)
         {
-            for (int j = 127 ; j < 256 ; j++)
+            for (int j = 128 ; j < 256 ; j++)
             {
-                image[i][j] = thirdQuarter[i-127][j-127];
+                image[i][j] = thirdQuarter[i-128][j-128];
             }
         }
     }
 
     else if (qrt4 == 4)
     {
-        for (int i = 127 ; i < 256 ; i++)
+        for (int i = 128 ; i < 256 ; i++)
         {
-            for (int j = 127 ; j < 256 ; j++)
+            for (int j = 128 ; j < 256 ; j++)
             {
-                image[i][j] = fourthQuarter[i-127][j-127];
+                image[i][j] = fourthQuarter[i-128][j-128];
             }
         }
     }
