@@ -12,7 +12,7 @@
 #include "bmplib.cpp"
 
 using namespace std;
-
+// declaring functions
 void openPicture();
 void savePicture();
 void pictureFilter();
