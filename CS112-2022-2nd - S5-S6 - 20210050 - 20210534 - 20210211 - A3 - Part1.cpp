@@ -23,6 +23,7 @@ void shuffle();
 void blur();
 
 unsigned char image[256][256];
+unsigned char new_image[256][256];
 
 
 int main()
@@ -61,23 +62,23 @@ int main()
         }
         else if(userChoice == "5"){
             int choice;
-            cout << "plaese enter your choice 90 or 180 or 270 : \n";
+            cout << "please enter your choice 90 or 180 or 270 : \n";
             cin >> choice;
             if (choice == 90)
             {
                 _rotate();
             }
 
-	        if (choice == 180)
+            if (choice == 180)
             {
-	            _rotate();
-	            _rotate();
+                _rotate();
+                _rotate();
             }
             if (choice == 270)
             {
-	            _rotate();
-	            _rotate();
-	            _rotate();
+                _rotate();
+                _rotate();
+                _rotate();
             }
         }
         else if(userChoice == "6"){
@@ -111,18 +112,34 @@ int main()
 }
 void openPicture()
 {
-	char imageName[100];
-	cin >> imageName;
-	strcat(imageName, ".bmp");
-	readGSBMP(imageName, image);
+    char imageName[100];
+    cin >> imageName;
+    strcat(imageName, ".bmp");
+    readGSBMP(imageName, image);
+}
+void openPicture2()
+{
+    cout << "Please enter the name of the second image:\n";
+    char imageName[100];
+    cin >> imageName;
+    strcat(imageName, ".bmp");
+    readGSBMP(imageName, new_image);
 }
 void savePicture()
 {
-	char imageName[100];
-	cout << "Please enter the filtered photo name : ";
-	cin >> imageName;
-	strcat(imageName, ".bmp");
-	writeGSBMP(imageName, image);
+    char imageName[100];
+    cout << "Please enter the filtered photo name : ";
+    cin >> imageName;
+    strcat(imageName, ".bmp");
+    writeGSBMP(imageName, image);
+}
+void savePicture2()
+{
+    char imageName[100];
+    cout << "Please enter the filtered photo name : ";
+    cin >> imageName;
+    strcat(imageName, ".bmp");
+    writeGSBMP(imageName, new_image);
 }
 void blackWhite(){
     long long average = 0;
@@ -145,27 +162,34 @@ void blackWhite(){
 }
 void invert(){
     for (int i = 0; i < 256; i++)
-	{
-		for (int j = 0; j < 256; j++)
-		{
-			if (image[i][j] == 0)
-			{
-				image[i][j] = 255;
-			}
-			else if (image[i][j] == 255)
-			{
-				image[i][j] = 0;
-			}
-			else
-			{
-				image[i][j] = 255 - image[i][j];
-			}
-		}
-	}
+    {
+        for (int j = 0; j < 256; j++)
+        {
+            if (image[i][j] == 0)
+            {
+                image[i][j] = 255;
+            }
+            else if (image[i][j] == 255)
+            {
+                image[i][j] = 0;
+            }
+            else
+            {
+                image[i][j] = 255 - image[i][j];
+            }
+        }
+    }
 
 }
 void _merge(){
+    openPicture2();
+    for (int i = 0; i < SIZE; i++) {
+        for (int j = 0; j< SIZE; j++) {
+            new_image[i][j]=(image[i][j] + new_image[i][j])/2;
 
+        }
+    }
+    savePicture2();
 }
 void flip(){
     cout << "please choose how to flip the image\n1- horizontally\n2- vertically\n";
@@ -195,24 +219,43 @@ void flip(){
 void _rotate(){
     unsigned char newImage[256][256];
     for (int i = 0; i < 256; i++)
-	{
-		for (int j = 0; j < 256; j++)
-		{
-		    newImage[i][j] = image[255-j][i];
-		}
-	}
-	for (int i = 0; i < 256; i++)
-	{
-		for (int j = 0; j < 256; j++)
-		{
-		    image[i][j] = newImage[i][j];
-		}
-	}
+    {
+        for (int j = 0; j < 256; j++)
+        {
+            newImage[i][j] = image[255-j][i];
+        }
+    }
+    for (int i = 0; i < 256; i++)
+    {
+        for (int j = 0; j < 256; j++)
+        {
+            image[i][j] = newImage[i][j];
+        }
+    }
 
 
 }
 void darkenLighten(){
+        int choice;
+        cout << "if you want to lighten the image please enter 1" << endl << "or enter 2 to darken the image :";
+        cin >> choice;
+        if (choice == 1) {
+            for (int i = 0; i < SIZE; i++) {
+                for (int j = 0; j < SIZE; j++) {
+                    image[i][j] = (image[i][j] + 255) / 2;
+                }
+            }
+        } else if (choice == 2) {
+            for (int i = 0; i < SIZE; i++) {
+                for (int j = 0; j < SIZE; j++) {
 
+                    image[i][j] *= 0.5;
+                }
+            }
+        } else {
+            cout << "Please enter a valid choice";
+        }
+        savePicture();
 }
 void detectEdges(){
     for(int x = 0; x < SIZE; x++){
@@ -370,6 +413,21 @@ void enlarge(){
 
 }
 void shrink(){
+    int factor;
+    cout << "Please enter the factor to shrink the image dimensions by it :\n";
+    cin >> factor;
+    if (factor <= 1)
+        cout << "Please enter a valid input\n";
+    else{
+        for (int i = 0; i < SIZE; i++ ){
+            for (int j = 0; j< SIZE; j++) {
+
+                new_image[i/factor][j/factor]=image[i][j];
+            }
+        }
+        savePicture2();
+
+    }
 
 }
 void mirror(){
@@ -657,5 +715,13 @@ void shuffle(){
 
 }
 void blur(){
-
+    int pixels_average;
+    for (int i = 0; i < SIZE; i++ ){
+        for (int j = 0; j< SIZE; j++) {
+            pixels_average=(image[i][j]+ image[i][j-1]+image[i][j-2]+image[i][j+1]+image[i][j+2]+image[i-1][j]+image[i-1][j-1]+image[i-1][j-2]+image[i-1][j+1]+image[i-1][j+2]+image[i-2][j]+image[i-2][j-1]+image[i-2][j-2]+image[i-2][j+1]+image[i-2][j+2]+image[i+1][j]+image[i+1][j-1]+image[i+1][j-2]+image[i+1][j+1]+image[i+1][j+2]+image[i+2][j]+image[i+2][j-1]+image[i+2][j-2]+image[i+2][j+1]+image[i+2][j+2])/25;
+            image[i][j]= pixels_average ;
+        }
+    }
+    savePicture();
 }
+
